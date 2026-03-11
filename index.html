@@ -342,14 +342,16 @@
     width: 320px;
     height: 320px;
     border-radius: 50%;
-    background: radial-gradient(circle at 35% 30%, var(--ash) 0%, var(--charcoal) 40%, var(--black) 100%);
-    border: 3px solid var(--deep-red);
-    box-shadow:
-      0 0 0 8px rgba(122,12,14,0.15),
-      0 0 0 16px rgba(122,12,14,0.08),
-      0 0 80px rgba(200,24,27,0.2),
-      inset 0 0 60px rgba(0,0,0,0.8);
+    cursor: pointer;
+    z-index: 2;
     animation: drumGlow 3s ease-in-out infinite;
+  }
+
+  .drum-graphic svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
   }
 
   .drum-graphic .drum-label {
@@ -368,7 +370,7 @@
     font-family: 'Noto Serif JP', serif;
     font-size: 52px;
     font-weight: 900;
-    color: rgba(200,24,27,0.3);
+    color: rgba(80,40,10,0.35);
     display: block;
     transition: opacity 0.4s ease, transform 0.4s ease;
   }
@@ -379,7 +381,7 @@
     font-weight: 800;
     font-size: 44px;
     letter-spacing: 0.12em;
-    color: rgba(200,24,27,0.92);
+    color: rgba(80,40,10,0.7);
     display: block;
     position: absolute;
     top: 50%; left: 50%;
@@ -388,9 +390,8 @@
     transition: opacity 0.4s ease, transform 0.4s ease;
     white-space: nowrap;
     text-shadow:
-      0 0 30px rgba(200,24,27,0.6),
-      2px 2px 0px rgba(80,0,0,0.3),
-      -1px -1px 0px rgba(200,24,27,0.2);
+      0 0 20px rgba(80,40,10,0.2),
+      2px 2px 0px rgba(40,20,5,0.2);
     font-style: italic;
     pointer-events: none;
   }
@@ -406,11 +407,9 @@
     filter: url(#brushInk);
   }
 
-  .drum-graphic { cursor: pointer; position: absolute; z-index: 2; }
-
   @keyframes drumGlow {
-    0%, 100% { box-shadow: 0 0 0 8px rgba(122,12,14,0.15), 0 0 0 16px rgba(122,12,14,0.08), 0 0 80px rgba(200,24,27,0.2), inset 0 0 60px rgba(0,0,0,0.8); }
-    50% { box-shadow: 0 0 0 8px rgba(122,12,14,0.25), 0 0 0 20px rgba(122,12,14,0.12), 0 0 120px rgba(200,24,27,0.35), inset 0 0 60px rgba(0,0,0,0.8); }
+    0%, 100% { filter: drop-shadow(0 0 18px rgba(200,24,27,0.25)) drop-shadow(0 0 40px rgba(200,24,27,0.12)); }
+    50%       { filter: drop-shadow(0 0 28px rgba(200,24,27,0.45)) drop-shadow(0 0 60px rgba(200,24,27,0.22)); }
   }
 
   .about-text h2 {
@@ -1246,6 +1245,101 @@
   <div class="about">
     <div class="about-visual">
       <div class="drum-graphic">
+        <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="headGrad" cx="45%" cy="40%" r="60%">
+              <stop offset="0%"   stop-color="#d4aa62"/>
+              <stop offset="60%"  stop-color="#c49840"/>
+              <stop offset="85%"  stop-color="#a8792a"/>
+              <stop offset="100%" stop-color="#7a5015"/>
+            </radialGradient>
+            <radialGradient id="headSheen" cx="36%" cy="30%" r="40%">
+              <stop offset="0%"   stop-color="rgba(255,248,220,0.22)"/>
+              <stop offset="100%" stop-color="rgba(255,248,220,0)"/>
+            </radialGradient>
+            <radialGradient id="edgeShadow" cx="50%" cy="50%" r="50%">
+              <stop offset="70%"  stop-color="rgba(0,0,0,0)"/>
+              <stop offset="100%" stop-color="rgba(0,0,0,0.38)"/>
+            </radialGradient>
+            <radialGradient id="tackGrad" cx="35%" cy="30%" r="65%">
+              <stop offset="0%"   stop-color="#555555"/>
+              <stop offset="40%"  stop-color="#222222"/>
+              <stop offset="100%" stop-color="#0a0a0a"/>
+            </radialGradient>
+          </defs>
+
+          <!-- Dark wood barrel visible at very edge -->
+          <circle cx="160" cy="160" r="158" fill="#3a1e08"/>
+
+          <!-- Hide stretched over drum, pulling tight at the edge -->
+          <circle cx="160" cy="160" r="155" fill="url(#headGrad)"/>
+
+          <!-- Edge darkening where hide pulls taut over rim -->
+          <circle cx="160" cy="160" r="155" fill="url(#edgeShadow)"/>
+
+          <!-- Subtle tack tension ring — hide slightly indented where pulled down -->
+          <circle cx="160" cy="160" r="138" fill="none" stroke="rgba(80,45,8,0.25)" stroke-width="2.5"/>
+          <circle cx="160" cy="160" r="136" fill="none" stroke="rgba(180,140,60,0.15)" stroke-width="1"/>
+
+          <!-- Natural sheen highlight -->
+          <circle cx="160" cy="160" r="155" fill="url(#headSheen)"/>
+
+          <!-- Black tacks around rim, sitting on the hide at the barrel edge -->
+          <g>
+            <circle cx="160.0" cy="11.0" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
+            <circle cx="199.3" cy="16.2" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
+            <circle cx="236.0" cy="31.4" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
+            <circle cx="267.5" cy="55.5" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
+            <circle cx="291.6" cy="87.0" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
+            <circle cx="306.8" cy="123.7" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
+            <circle cx="312.0" cy="160.0" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
+            <circle cx="306.8" cy="196.3" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
+            <circle cx="291.6" cy="233.0" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
+            <circle cx="267.5" cy="264.5" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
+            <circle cx="236.0" cy="288.6" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
+            <circle cx="199.3" cy="303.8" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
+            <circle cx="160.0" cy="309.0" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
+            <circle cx="120.7" cy="303.8" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
+            <circle cx="84.0"  cy="288.6" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
+            <circle cx="52.5"  cy="264.5" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
+            <circle cx="28.4"  cy="233.0" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
+            <circle cx="13.2"  cy="196.3" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
+            <circle cx="8.0"   cy="160.0" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
+            <circle cx="13.2"  cy="123.7" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
+            <circle cx="28.4"  cy="87.0"  r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
+            <circle cx="52.5"  cy="55.5"  r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
+            <circle cx="84.0"  cy="31.4"  r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
+            <circle cx="120.7" cy="16.2"  r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
+            <!-- Small highlight on each tack -->
+            <circle cx="160.0" cy="9.5"   r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
+            <circle cx="199.0" cy="14.7"  r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
+            <circle cx="234.5" cy="29.9"  r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
+            <circle cx="265.8" cy="54.0"  r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
+            <circle cx="289.9" cy="85.5"  r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
+            <circle cx="305.1" cy="122.2" r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
+            <circle cx="310.5" cy="158.5" r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
+            <circle cx="305.1" cy="194.8" r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
+            <circle cx="289.9" cy="231.5" r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
+            <circle cx="265.8" cy="263.0" r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
+            <circle cx="234.5" cy="287.1" r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
+            <circle cx="199.0" cy="302.3" r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
+            <circle cx="160.0" cy="307.5" r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
+            <circle cx="121.0" cy="302.3" r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
+            <circle cx="85.5"  cy="287.1" r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
+            <circle cx="54.2"  cy="263.0" r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
+            <circle cx="29.9"  cy="231.5" r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
+            <circle cx="14.7"  cy="194.8" r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
+            <circle cx="9.5"   cy="158.5" r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
+            <circle cx="14.7"  cy="122.2" r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
+            <circle cx="29.9"  cy="85.5"  r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
+            <circle cx="54.2"  cy="54.0"  r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
+            <circle cx="85.5"  cy="29.9"  r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
+            <circle cx="121.0" cy="14.7"  r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
+          </g>
+
+          <!-- Outer red glow ring -->
+          <circle cx="160" cy="160" r="158" fill="none" stroke="rgba(200,24,27,0.2)" stroke-width="3"/>
+        </svg>
         <div class="drum-label">
           <span class="kanji">太鼓</span>
           <span class="english">TAIKO</span>
@@ -1263,10 +1357,7 @@
       <p>Drum Revolution has grown into one of the largest taiko groups in the San Francisco Bay Area, offering classes and workshops in six locations: Emeryville, Millbrae, Palo Alto, Los Altos, Milpitas, and Los Gatos. The group performs all over the Bay Area, with major appearances at the San Francisco Cherry Blossom Festival, the Cupertino Cherry Blossom Festival, the Millbrae Japanese Culture Festival, for the Oakland Earthquakes, at the Rugby World Cup Sevens, and for various festivals, firms, schools, and cities across the Bay Area.</p>
     </div>
     <div class="about-lower-image">
-      <div class="about-img-placeholder">
-        <span class="about-img-icon">革命</span>
-        <span class="about-img-hint">[ Add your photo here ]</span>
-      </div>
+      <img src="images/100-Drum Revolution Shinnenkai 2026 Tech Rehearsal - 2026-01-17 - Mark Shigenaga -DSC09815.jpg" alt="Drum Revolution rehearsal" style="width:100%;height:100%;object-fit:cover;display:block;">
     </div>
   </div>
   <div class="stats">
@@ -1350,10 +1441,7 @@
 
 <!-- ─── BANNER IMAGE ─── -->
 <div class="banner-image">
-  <div class="banner-image-inner">
-    <span class="banner-image-icon">太鼓</span>
-    <span class="banner-image-hint">[ Add your photo here — replace this div with an &lt;img&gt; tag ]</span>
-  </div>
+  <img src="images/376-Drum Revolution Shinnenkai 2026 - 2026-01-18 - Mark Shigenaga -DSC04052.jpg" alt="Drum Revolution performance" style="width:100%;height:100%;object-fit:cover;display:block;">
 </div>
 
 <style>
@@ -1363,6 +1451,16 @@
     background: var(--charcoal);
     position: relative;
     overflow: hidden;
+  }
+
+  .banner-image img {
+    position: absolute;
+    top: -20%;
+    left: 0;
+    width: 100%;
+    height: 140%;
+    object-fit: cover;
+    will-change: transform;
   }
 
   /* ── To use a real photo, replace the above background with:
@@ -1598,48 +1696,42 @@
       <!-- Slide 1 -->
       <div class="carousel-slide">
         <div class="carousel-placeholder">
-          <span class="carousel-icon">太</span>
-          <span class="carousel-caption">Cherry Blossom Festival · San Francisco</span>
+          <img src="images/042-Drum Revolution Shinnenkai 2026 Tech Rehearsal - 2026-01-17 - Mark Shigenaga -DSC09605.jpg" alt="Drum Revolution rehearsal">
         </div>
       </div>
 
       <!-- Slide 2 -->
       <div class="carousel-slide">
         <div class="carousel-placeholder">
-          <span class="carousel-icon">鼓</span>
-          <span class="carousel-caption">Millbrae Japanese Cultural Festival</span>
+          <img src="images/054-Drum Revolution Shinnenkai 2026 Tech Rehearsal - 2026-01-17 - Mark Shigenaga -DSC05919.jpg" alt="Drum Revolution rehearsal">
         </div>
       </div>
 
       <!-- Slide 3 -->
       <div class="carousel-slide">
         <div class="carousel-placeholder">
-          <span class="carousel-icon">革</span>
-          <span class="carousel-caption">Adult 1A Class · Palo Alto</span>
+          <img src="images/385-Drum Revolution Shinnenkai 2026 - 2026-01-18 - Mark Shigenaga -DSC04106.jpg" alt="Drum Revolution Shinnenkai 2026">
         </div>
       </div>
 
       <!-- Slide 4 -->
       <div class="carousel-slide">
         <div class="carousel-placeholder">
-          <span class="carousel-icon">命</span>
-          <span class="carousel-caption">Rugby World Cup Sevens</span>
+          <img src="images/416-Drum Revolution Shinnenkai 2026 - 2026-01-18 - Mark Shigenaga -DSC04348.jpg" alt="Drum Revolution Shinnenkai 2026">
         </div>
       </div>
 
       <!-- Slide 5 -->
       <div class="carousel-slide">
         <div class="carousel-placeholder">
-          <span class="carousel-icon">響</span>
-          <span class="carousel-caption">Oakland Earthquakes Performance</span>
+          <img src="images/547-Drum Revolution Shinnenkai 2026 - 2026-01-18 - Mark Shigenaga -DSC05153.jpg" alt="Drum Revolution Shinnenkai 2026">
         </div>
       </div>
 
       <!-- Slide 6 -->
       <div class="carousel-slide">
         <div class="carousel-placeholder">
-          <span class="carousel-icon">打</span>
-          <span class="carousel-caption">Ensemble Rehearsal · Emeryville</span>
+          <img src="images/555-Drum Revolution Shinnenkai 2026 - 2026-01-18 - Mark Shigenaga -DSC05199.jpg" alt="Drum Revolution Shinnenkai 2026">
         </div>
       </div>
 
@@ -1695,13 +1787,12 @@
     transition: border-color 0.3s;
   }
 
-  /* ── Swap this for a real <img> when you have photos ──
-     .carousel-placeholder img {
-       width: 100%; height: 100%;
-       object-fit: cover;
-       position: absolute; inset: 0;
-     }
-  */
+  /* ── Carousel images ── */
+  .carousel-placeholder img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    position: absolute; inset: 0;
+  }
 
   .carousel-placeholder:hover { border-color: rgba(200,24,27,0.4); }
 
@@ -1986,6 +2077,18 @@
       });
     });
   })();
+
+  // Parallax banner image
+  var bannerImg = document.querySelector('.banner-image img');
+  var banner = document.querySelector('.banner-image');
+  if (bannerImg && banner) {
+    window.addEventListener('scroll', function() {
+      var rect = banner.getBoundingClientRect();
+      var scrolled = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+      var offset = (scrolled - 0.5) * 80;
+      bannerImg.style.transform = 'translateY(' + offset + 'px)';
+    }, { passive: true });
+  }
 
   // Fade in on scroll
   var observer = new IntersectionObserver(function(entries) {
