@@ -342,16 +342,16 @@
     width: 320px;
     height: 320px;
     border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, var(--ash) 0%, var(--charcoal) 40%, var(--black) 100%);
+    border: 3px solid var(--deep-red);
+    box-shadow:
+      0 0 0 8px rgba(122,12,14,0.15),
+      0 0 0 16px rgba(122,12,14,0.08),
+      0 0 80px rgba(200,24,27,0.2),
+      inset 0 0 60px rgba(0,0,0,0.8);
+    animation: drumGlow 3s ease-in-out infinite;
     cursor: pointer;
     z-index: 2;
-    animation: drumGlow 3s ease-in-out infinite;
-  }
-
-  .drum-graphic svg {
-    width: 100%;
-    height: 100%;
-    overflow: visible;
-    pointer-events: none;
   }
 
   .drum-graphic .drum-label {
@@ -370,7 +370,7 @@
     font-family: 'Noto Serif JP', serif;
     font-size: 52px;
     font-weight: 900;
-    color: rgba(80,40,10,0.35);
+    color: rgba(200,24,27,0.3);
     display: block;
     transition: opacity 0.4s ease, transform 0.4s ease;
   }
@@ -381,7 +381,7 @@
     font-weight: 800;
     font-size: 44px;
     letter-spacing: 0.12em;
-    color: rgba(80,40,10,0.7);
+    color: rgba(200,24,27,0.5);
     display: block;
     position: absolute;
     top: 50%; left: 50%;
@@ -390,8 +390,8 @@
     transition: opacity 0.4s ease, transform 0.4s ease;
     white-space: nowrap;
     text-shadow:
-      0 0 20px rgba(80,40,10,0.2),
-      2px 2px 0px rgba(40,20,5,0.2);
+      0 0 30px rgba(200,24,27,0.15),
+      2px 2px 0px rgba(80,0,0,0.1);
     font-style: italic;
     pointer-events: none;
   }
@@ -408,8 +408,8 @@
   }
 
   @keyframes drumGlow {
-    0%, 100% { filter: drop-shadow(0 0 18px rgba(200,24,27,0.25)) drop-shadow(0 0 40px rgba(200,24,27,0.12)); }
-    50%       { filter: drop-shadow(0 0 28px rgba(200,24,27,0.45)) drop-shadow(0 0 60px rgba(200,24,27,0.22)); }
+    0%, 100% { box-shadow: 0 0 0 8px rgba(122,12,14,0.15), 0 0 0 16px rgba(122,12,14,0.08), 0 0 80px rgba(200,24,27,0.2), inset 0 0 60px rgba(0,0,0,0.8); }
+    50% { box-shadow: 0 0 0 8px rgba(122,12,14,0.25), 0 0 0 20px rgba(122,12,14,0.12), 0 0 120px rgba(200,24,27,0.35), inset 0 0 60px rgba(0,0,0,0.8); }
   }
 
   .about-text h2 {
@@ -1245,101 +1245,6 @@
   <div class="about">
     <div class="about-visual">
       <div class="drum-graphic">
-        <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <radialGradient id="headGrad" cx="45%" cy="40%" r="60%">
-              <stop offset="0%"   stop-color="#d4aa62"/>
-              <stop offset="60%"  stop-color="#c49840"/>
-              <stop offset="85%"  stop-color="#a8792a"/>
-              <stop offset="100%" stop-color="#7a5015"/>
-            </radialGradient>
-            <radialGradient id="headSheen" cx="36%" cy="30%" r="40%">
-              <stop offset="0%"   stop-color="rgba(255,248,220,0.22)"/>
-              <stop offset="100%" stop-color="rgba(255,248,220,0)"/>
-            </radialGradient>
-            <radialGradient id="edgeShadow" cx="50%" cy="50%" r="50%">
-              <stop offset="70%"  stop-color="rgba(0,0,0,0)"/>
-              <stop offset="100%" stop-color="rgba(0,0,0,0.38)"/>
-            </radialGradient>
-            <radialGradient id="tackGrad" cx="35%" cy="30%" r="65%">
-              <stop offset="0%"   stop-color="#555555"/>
-              <stop offset="40%"  stop-color="#222222"/>
-              <stop offset="100%" stop-color="#0a0a0a"/>
-            </radialGradient>
-          </defs>
-
-          <!-- Dark wood barrel visible at very edge -->
-          <circle cx="160" cy="160" r="158" fill="#3a1e08"/>
-
-          <!-- Hide stretched over drum, pulling tight at the edge -->
-          <circle cx="160" cy="160" r="155" fill="url(#headGrad)"/>
-
-          <!-- Edge darkening where hide pulls taut over rim -->
-          <circle cx="160" cy="160" r="155" fill="url(#edgeShadow)"/>
-
-          <!-- Subtle tack tension ring — hide slightly indented where pulled down -->
-          <circle cx="160" cy="160" r="138" fill="none" stroke="rgba(80,45,8,0.25)" stroke-width="2.5"/>
-          <circle cx="160" cy="160" r="136" fill="none" stroke="rgba(180,140,60,0.15)" stroke-width="1"/>
-
-          <!-- Natural sheen highlight -->
-          <circle cx="160" cy="160" r="155" fill="url(#headSheen)"/>
-
-          <!-- Black tacks around rim, sitting on the hide at the barrel edge -->
-          <g>
-            <circle cx="160.0" cy="11.0" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
-            <circle cx="199.3" cy="16.2" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
-            <circle cx="236.0" cy="31.4" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
-            <circle cx="267.5" cy="55.5" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
-            <circle cx="291.6" cy="87.0" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
-            <circle cx="306.8" cy="123.7" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
-            <circle cx="312.0" cy="160.0" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
-            <circle cx="306.8" cy="196.3" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
-            <circle cx="291.6" cy="233.0" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
-            <circle cx="267.5" cy="264.5" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
-            <circle cx="236.0" cy="288.6" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
-            <circle cx="199.3" cy="303.8" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
-            <circle cx="160.0" cy="309.0" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
-            <circle cx="120.7" cy="303.8" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
-            <circle cx="84.0"  cy="288.6" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
-            <circle cx="52.5"  cy="264.5" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
-            <circle cx="28.4"  cy="233.0" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
-            <circle cx="13.2"  cy="196.3" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
-            <circle cx="8.0"   cy="160.0" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
-            <circle cx="13.2"  cy="123.7" r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
-            <circle cx="28.4"  cy="87.0"  r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
-            <circle cx="52.5"  cy="55.5"  r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
-            <circle cx="84.0"  cy="31.4"  r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
-            <circle cx="120.7" cy="16.2"  r="4" fill="url(#tackGrad)" stroke="#050302" stroke-width="0.8"/>
-            <!-- Small highlight on each tack -->
-            <circle cx="160.0" cy="9.5"   r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
-            <circle cx="199.0" cy="14.7"  r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
-            <circle cx="234.5" cy="29.9"  r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
-            <circle cx="265.8" cy="54.0"  r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
-            <circle cx="289.9" cy="85.5"  r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
-            <circle cx="305.1" cy="122.2" r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
-            <circle cx="310.5" cy="158.5" r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
-            <circle cx="305.1" cy="194.8" r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
-            <circle cx="289.9" cy="231.5" r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
-            <circle cx="265.8" cy="263.0" r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
-            <circle cx="234.5" cy="287.1" r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
-            <circle cx="199.0" cy="302.3" r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
-            <circle cx="160.0" cy="307.5" r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
-            <circle cx="121.0" cy="302.3" r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
-            <circle cx="85.5"  cy="287.1" r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
-            <circle cx="54.2"  cy="263.0" r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
-            <circle cx="29.9"  cy="231.5" r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
-            <circle cx="14.7"  cy="194.8" r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
-            <circle cx="9.5"   cy="158.5" r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
-            <circle cx="14.7"  cy="122.2" r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
-            <circle cx="29.9"  cy="85.5"  r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
-            <circle cx="54.2"  cy="54.0"  r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
-            <circle cx="85.5"  cy="29.9"  r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
-            <circle cx="121.0" cy="14.7"  r="1.5" fill="rgba(160,160,160,0.15)" stroke="none"/>
-          </g>
-
-          <!-- Outer red glow ring -->
-          <circle cx="160" cy="160" r="158" fill="none" stroke="rgba(200,24,27,0.2)" stroke-width="3"/>
-        </svg>
         <div class="drum-label">
           <span class="kanji">太鼓</span>
           <span class="english">TAIKO</span>
@@ -1447,7 +1352,7 @@
 <style>
   .banner-image {
     width: 100%;
-    height: 480px;
+    height: 500px;
     background: var(--charcoal);
     position: relative;
     overflow: hidden;
@@ -1871,12 +1776,13 @@
 <script>
   (function() {
     var track    = document.getElementById('carouselTrack');
-    var slides   = track.querySelectorAll('.carousel-slide');
+    var slides   = Array.from(track.querySelectorAll('.carousel-slide'));
     var prevBtn  = document.getElementById('carouselPrev');
     var nextBtn  = document.getElementById('carouselNext');
     var dotsWrap = document.getElementById('carouselDots');
     var total    = slides.length;
-    var current  = 0;
+    var current  = 0; // logical index into original slides
+    var isTransitioning = false;
 
     function visibleCount() {
       if (window.innerWidth <= 560) return 1;
@@ -1884,39 +1790,112 @@
       return 3;
     }
 
-    function maxIndex() { return total - visibleCount(); }
-
-    // Build dots
-    for (var i = 0; i <= maxIndex(); i++) {
-      var dot = document.createElement('button');
-      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-      dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-      dot.addEventListener('click', (function(idx) {
-        return function() { goTo(idx); };
-      })(i));
-      dotsWrap.appendChild(dot);
+    // Clone slides for infinite loop: append clones at end, prepend clones at start
+    function buildClones() {
+      // Remove any existing clones
+      track.querySelectorAll('.carousel-clone').forEach(function(el) { el.remove(); });
+      var vc = visibleCount();
+      // Prepend last `vc` slides as clones at the front
+      for (var i = total - 1; i >= total - vc; i--) {
+        var clone = slides[i].cloneNode(true);
+        clone.classList.add('carousel-clone');
+        track.insertBefore(clone, track.firstChild);
+      }
+      // Append first `vc` slides as clones at the end
+      for (var j = 0; j < vc; j++) {
+        var clone2 = slides[j].cloneNode(true);
+        clone2.classList.add('carousel-clone');
+        track.appendChild(clone2);
+      }
     }
 
-    function goTo(idx) {
-      current = Math.max(0, Math.min(idx, maxIndex()));
-      var pct = (100 / visibleCount()) * current;
+    function allSlides() {
+      return Array.from(track.querySelectorAll('.carousel-slide'));
+    }
+
+    function setPosition(idx, animate) {
+      var vc = visibleCount();
+      var all = allSlides();
+      var realIdx = vc + idx; // offset by number of prepended clones
+      var pct = (100 / vc) * realIdx;
+      if (!animate) {
+        track.style.transition = 'none';
+      } else {
+        track.style.transition = 'transform 0.5s cubic-bezier(0.4,0,0.2,1)';
+      }
       track.style.transform = 'translateX(-' + pct + '%)';
+    }
+
+    function updateDots() {
       dotsWrap.querySelectorAll('.carousel-dot').forEach(function(d, i) {
         d.classList.toggle('active', i === current);
       });
     }
 
-    prevBtn.addEventListener('click', function() { goTo(current - 1); });
-    nextBtn.addEventListener('click', function() { goTo(current + 1); });
+    function goTo(idx, animate) {
+      if (animate === undefined) animate = true;
+      current = ((idx % total) + total) % total; // wrap within bounds
+      setPosition(current, animate);
+      updateDots();
+    }
+
+    // Build dots
+    function buildDots() {
+      dotsWrap.innerHTML = '';
+      for (var i = 0; i < total; i++) {
+        var dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+        dot.addEventListener('click', (function(idx) {
+          return function() { goTo(idx); };
+        })(i));
+        dotsWrap.appendChild(dot);
+      }
+    }
+
+    function init() {
+      buildClones();
+      buildDots();
+      setPosition(current, false);
+    }
+
+    // After transition ends, silently jump if we're on a clone
+    track.addEventListener('transitionend', function() {
+      var vc = visibleCount();
+      if (current < 0) {
+        current = total - 1;
+        setPosition(current, false);
+      } else if (current >= total) {
+        current = 0;
+        setPosition(current, false);
+      }
+      updateDots();
+      isTransitioning = false;
+    });
+
+    prevBtn.addEventListener('click', function() {
+      goTo(current - 1);
+    });
+    nextBtn.addEventListener('click', function() {
+      goTo(current + 1);
+    });
 
     // Auto-advance every 4s
     var timer = setInterval(function() {
-      goTo(current >= maxIndex() ? 0 : current + 1);
+      goTo(current + 1);
     }, 4000);
 
     track.addEventListener('mouseenter', function() { clearInterval(timer); });
+    track.addEventListener('mouseleave', function() {
+      timer = setInterval(function() { goTo(current + 1); }, 4000);
+    });
 
-    window.addEventListener('resize', function() { goTo(current); });
+    window.addEventListener('resize', function() {
+      buildClones();
+      setPosition(current, false);
+    });
+
+    init();
   })();
 </script>
 
